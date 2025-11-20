@@ -31,6 +31,22 @@ A scalable REST API for an e-commerce order management system with inventory tra
 ### Swagger UI
 Access interactive API documentation at: `/api/documentation`
 
+### API Testing with Postman
+
+1. **Import the API**: Use the Swagger documentation to generate a Postman collection
+    - Visit `/api/documentation`
+    - Use the "Export" feature to download as Postman collection
+
+2. **Environment Setup**:
+    - Create a new environment in Postman
+    - Add variables:
+        - `base_url`: `http://localhost:8000`
+        - `access_token`: Your JWT token after login
+
+3. **Testing Flow**:
+    - Start with `/api/v1/register` or `/api/v1/login` to get access token
+    - Use the token in Authorization header: `Bearer {access_token}`
+    - Test protected endpoints like products and orders
 ### Postman Collection
 Import the Postman collection from `/docs/Order-Management-API.postman_collection.json`
 

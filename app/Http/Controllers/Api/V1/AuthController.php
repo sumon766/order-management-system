@@ -31,6 +31,65 @@ use Illuminate\Validation\ValidationException;
  *     @OA\Property(property="created_at", type="string", format="date-time"),
  *     @OA\Property(property="updated_at", type="string", format="date-time")
  * )
+ *
+ * @OA\Schema(
+ *     schema="Product",
+ *     type="object",
+ *     @OA\Property(property="id", type="integer", example=1),
+ *     @OA\Property(property="user_id", type="integer", example=1),
+ *     @OA\Property(property="name", type="string", example="iPhone 15 Pro"),
+ *     @OA\Property(property="description", type="string", example="Latest Apple smartphone"),
+ *     @OA\Property(property="sku", type="string", example="IPHONE-15-PRO-256"),
+ *     @OA\Property(property="price", type="number", format="float", example=1199.99),
+ *     @OA\Property(property="stock_quantity", type="integer", example=100),
+ *     @OA\Property(property="low_stock_threshold", type="integer", example=10),
+ *     @OA\Property(property="is_active", type="boolean", example=true),
+ *     @OA\Property(property="created_at", type="string", format="date-time"),
+ *     @OA\Property(property="updated_at", type="string", format="date-time")
+ * )
+ *
+ * @OA\Schema(
+ *     schema="Order",
+ *     type="object",
+ *     @OA\Property(property="id", type="integer", example=1),
+ *     @OA\Property(property="order_number", type="string", example="ORD-20231201123045-1234"),
+ *     @OA\Property(property="user_id", type="integer", example=1),
+ *     @OA\Property(property="total_amount", type="number", format="float", example=199.98),
+ *     @OA\Property(property="status", type="string", example="pending"),
+ *     @OA\Property(property="shipping_address", type="string", example="123 Main St, City, State 12345"),
+ *     @OA\Property(property="billing_address", type="string", example="123 Main St, City, State 12345"),
+ *     @OA\Property(property="customer_email", type="string", example="customer@example.com"),
+ *     @OA\Property(property="customer_phone", type="string", example="+1234567890"),
+ *     @OA\Property(property="notes", type="string", example="Please deliver after 5 PM"),
+ *     @OA\Property(property="created_at", type="string", format="date-time"),
+ *     @OA\Property(property="updated_at", type="string", format="date-time")
+ * )
+ *
+ * @OA\Schema(
+ *     schema="OrderItem",
+ *     type="object",
+ *     @OA\Property(property="id", type="integer", example=1),
+ *     @OA\Property(property="order_id", type="integer", example=1),
+ *     @OA\Property(property="product_id", type="integer", example=1),
+ *     @OA\Property(property="product_variant_id", type="integer", example=1),
+ *     @OA\Property(property="product_name", type="string", example="iPhone 15 Pro"),
+ *     @OA\Property(property="sku", type="string", example="IPHONE-15-PRO-256-BLK"),
+ *     @OA\Property(property="unit_price", type="number", format="float", example=999.99),
+ *     @OA\Property(property="quantity", type="integer", example=2),
+ *     @OA\Property(property="total_price", type="number", format="float", example=1999.98)
+ * )
+ *
+ * @OA\Schema(
+ *     schema="CSVImportFormat",
+ *     type="object",
+ *     description="Expected CSV format for product import",
+ *     @OA\Property(property="name", type="string", example="iPhone 15 Pro"),
+ *     @OA\Property(property="description", type="string", example="Latest Apple smartphone"),
+ *     @OA\Property(property="sku", type="string", example="IPHONE-15-PRO-256"),
+ *     @OA\Property(property="price", type="number", format="float", example=1199.99),
+ *     @OA\Property(property="stock_quantity", type="integer", example=100),
+ *     @OA\Property(property="low_stock_threshold", type="integer", example=10)
+ * )
  */
 class AuthController extends Controller
 {
