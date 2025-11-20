@@ -70,9 +70,15 @@ class ProductService
 
     public function updateStock(Product $product, int $quantity): bool
     {
-        return $this->productRepository->update($product, [
+        $result = $this->productRepository->update($product, [
             'stock_quantity' => $quantity
         ]);
+
+        if ($product->isLowStock()) {
+            LowStockAlert::dispatch($product);
+        }
+
+        return $result;
     }
 
     public function getLowStockProducts()

@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Repositories\OrderItemRepository;
+use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductVariantRepository;
+use App\Services\InventoryService;
+use App\Services\OrderService;
 use App\Services\ProductService;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +30,26 @@ class AppServiceProvider extends ServiceProvider
             return new ProductService(
                 $app->make(ProductRepository::class),
                 $app->make(ProductVariantRepository::class)
+            );
+        });
+
+        $this->app->bind(OrderRepository::class, function ($app) {
+            return new OrderRepository();
+        });
+
+        $this->app->bind(OrderItemRepository::class, function ($app) {
+            return new OrderItemRepository();
+        });
+
+        $this->app->bind(InventoryService::class, function ($app) {
+            return new InventoryService();
+        });
+
+        $this->app->bind(OrderService::class, function ($app) {
+            return new OrderService(
+                $app->make(OrderRepository::class),
+                $app->make(OrderItemRepository::class),
+                $app->make(InventoryService::class)
             );
         });
     }
